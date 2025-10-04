@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>FinTrack</title>
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#7c42f0",
+              "background-light": "#f6f6f8",
+              "background-dark": "#161022",
+            },
+            fontFamily: {
+              display: ["Manrope"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+              lg: "1rem",
+              xl: "1.5rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .form-input::placeholder {
+        color: #9ca3af;
+      }
+      .dark .form-input::placeholder {
+        color: #4b5563;
+      }
+    </style>
+  </head>
+  <body class="font-display bg-background-light dark:bg-background-dark">
+    <div class="flex min-h-screen items-center justify-center p-4">
+      <div
+        class="grid max-w-7xl grid-cols-1 gap-8 rounded-xl bg-background-light dark:bg-background-dark shadow-lg lg:grid-cols-5"
+      >
+        <div
+          class="relative col-span-1 hidden h-full items-start justify-between overflow-hidden rounded-l-xl p-8 text-white lg:col-span-2 lg:flex lg:flex-col"
+        >
+          <div
+            class="absolute inset-0 h-full w-full bg-cover bg-center"
+            style="
+              background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC0ZIBR8ydtrT1xqSWPxDuDo0bSQUv63G9uBJfoZ1I2LI8fOy0BlvLG06kS0rh2aXyOjB_Ex2aT6pCkwmBBLXCAwT-2AL86tYjDtQ0Wg3pRK6gVlHPUk7W6xhf1MeAO4iQ1yjk7b1fMFBBHKybN68mJJiNTPJHs96WWs768EckqeGDP707g8L3Vfx3V2b4cy91oO8fidIGhKHRCnGHEg7_s-6qgnZ0q3RKOb8bM1Vsu92-mnK7JXY662x2AKMxPos3KfBDIvcCi0IQ');
+            "
+          ></div>
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"
+          ></div>
+          <div class="relative z-10">
+            <a class="text-2xl font-bold" href="./index.html">FinTrack</a>
+          </div>
+         <div class="relative z-10">
+  <h1 class="mb-2 text-4xl font-bold text-white">Create Your Account</h1>
+  <p class="text-lg text-white/80">
+    Join us today and take control of your financial journey.  
+    Sign up to unlock tools that help you grow, save, and succeed.
+  </p>
+  <ul class="mt-4 list-disc space-y-2 pl-5 text-white/80">
+    <li>Track your income & expenses effortlessly</li>
+    <li>Set smart financial goals and stay motivated</li>
+    <li>Visualize your growth with interactive insights</li>
+    <li>Secure and easy-to-use platform</li>
+  </ul>
+</div>
+
+        </div>
+        <div class="col-span-1 p-8 lg:col-span-3">
+          <div class="flex flex-col space-y-6">
+            <div class="text-center">
+           
+              <h2 class="text-3xl font-bold text-gray-800 dark:text-white">
+                Create an Account
+              </h2>
+              <p class="text-gray-600 dark:text-gray-400">
+                Join our community and take control of your finances.
+              </p>
+            </div>
+            <form class="space-y-4">
+              <div>
+                <label
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  for="fullname"
+                  >Full Name</label
+                >
+                <input
+                  class="form-input mt-1 block w-full rounded border-gray-300 bg-gray-50 p-3 text-gray-800 focus:border-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:border-primary"
+                  id="fullname"
+                  placeholder="John Doe"
+                  type="text"
+                />
+              </div>
+              <div>
+                <label
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  for="email"
+                  >Email Address</label
+                >
+                <input
+                  class="form-input mt-1 block w-full rounded border-gray-300 bg-gray-50 p-3 text-gray-800 focus:border-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:border-primary"
+                  id="email"
+                  placeholder="you@example.com"
+                  type="email"
+                />
+              </div>
+              <div>
+                <label
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  for="password"
+                  >Password</label
+                >
+                <input
+                  class="form-input mt-1 block w-full rounded border-gray-300 bg-gray-50 p-3 text-gray-800 focus:border-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:border-primary"
+                  id="password"
+                  placeholder="••••••••"
+                  type="password"
+                />
+                <div class="mt-2">
+                  <div
+                    class="h-2 w-full rounded-full bg-gray-200 dark:bg-gray-600"
+                  >
+                    <div
+                      id="password_strength"
+                      class="h-2 rounded-full bg-primary"
+                    ></div>
+                  </div>
+                  <p
+                    id="password_strength_text"
+                    class="mt-1 text-xs text-gray-500 dark:text-gray-400"
+                  ></p>
+                </div>
+              </div>
+              <div>
+                <label
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  for="confirm-password"
+                  >Confirm Password</label
+                >
+                <input
+                  class="form-input mt-1 block w-full rounded border-gray-300 bg-gray-50 p-3 text-gray-800 focus:border-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:border-primary"
+                  id="confirm-password"
+                  placeholder="••••••••"
+                  type="password"
+                />
+              </div>
+              <div class="flex items-center">
+                <input
+                  class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-700"
+                  id="terms"
+                  type="checkbox"
+                />
+                <label
+                  class="ml-2 block text-sm text-gray-900 dark:text-gray-300"
+                  for="terms"
+                >
+                  I agree to the
+                  <a class="font-medium text-primary hover:underline" href="#"
+                    >Terms &amp; Conditions</a
+                  >
+                </label>
+              </div>
+              <button
+              id="create_account_btn"
+                class="w-full rounded-lg bg-primary px-5 py-3 text-center text-base font-bold text-white shadow-lg shadow-primary/30 transition-all duration-300 hover:bg-primary/90 focus:outline-none focus:ring-4 focus:ring-primary/50"
+                type="submit"
+              >
+                Create Account
+              </button>
+            </form>
+            <div class="text-center">
+              <p class="text-sm text-gray-600 dark:text-gray-400">
+                Already have an account?
+                <a
+                  class="font-medium text-primary hover:underline"
+                  href="./login.html"
+                  >Login</a
+                >
+              </p>
+            </div>
+            <div class="flex items-center">
+              <hr class="w-full border-gray-300 dark:border-gray-600" />
+              <p class="px-2 text-sm text-gray-500 dark:text-gray-400">OR</p>
+              <hr class="w-full border-gray-300 dark:border-gray-600" />
+            </div>
+            <div class="flex justify-center space-x-4">
+              <button
+                class="flex items-center justify-center rounded-full bg-white p-2 shadow-md dark:bg-gray-700"
+              >
+                <svg
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M21.35,11.1H12.18V13.83H18.69C18.36,17.64 15.19,19.27 12.19,19.27C8.36,19.27 5,16.25 5,12C5,7.75 8.36,4.73 12.19,4.73C14.04,4.73 15.3,5.5 15.9,6.05L17.9,4.23C16.36,2.88 14.36,2 12.19,2C7.03,2 3,6.58 3,12C3,17.42 7.03,22 12.19,22C17.6,22 21.7,18.35 21.7,12.33C21.7,11.76 21.58,11.41 21.35,11.1Z"
+                    fill="#4285F4"
+                  ></path>
+                </svg>
+              </button>
+              <button
+                class="flex items-center justify-center rounded-full bg-white p-2 shadow-md dark:bg-gray-700"
+              >
+                <svg
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M22.9999 12C22.9999 18.075 18.0749 23 11.9999 23C5.92492 23 0.999924 18.075 0.999924 12C0.999924 5.925 5.92492 1 11.9999 1C18.0749 1 22.9999 5.925 22.9999 12Z"
+                    fill="#1877F2"
+                  ></path>
+                  <path
+                    d="M15.4004 12.4497H13.6004V18.9997H10.1004V12.4497H8.60039V9.91973H10.1004V8.34973C10.1004 6.83973 10.8204 5.40973 13.0604 5.40973L15.2204 5.41973V7.85973H13.9204C13.2404 7.85973 13.1404 8.16973 13.1404 8.61973L13.1304 9.91973H15.4204L15.1104 12.4497H15.4004Z"
+                    fill="white"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./reg_Script.js"></script>
+  </body>
+</html>

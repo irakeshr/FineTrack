@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>FinTrack Dashboard</title>
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#7c42f0",
+              "background-light": "#f6f6f8",
+              "background-dark": "#161022",
+            },
+            fontFamily: {
+              display: ["Manrope"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+              lg: "1rem",
+              xl: "1.5rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="font-display bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200"
+  >
+    <div class="flex min-h-screen">
+      <aside
+        class="w-64 bg-white dark:bg-background-dark/50 shadow-lg border-r border-gray-200 dark:border-gray-800 p-4"
+      >
+        <div class="flex items-center gap-4 mb-8">
+          <svg
+            class="h-8 w-8 text-primary"
+            fill="none"
+            viewBox="0 0 48 48"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455C8.44365 35.9988 11.1227 37.6346 15.2073 38.6098C17.7086 39.2069 20.737 39.5564 24 39.5564C27.263 39.5564 30.2914 39.2069 32.7927 38.6098C36.8773 37.6346 39.5563 35.9988 39.5563 34.1455Z"
+              fill="currentColor"
+            ></path>
+            <path
+              clip-rule="evenodd"
+              d="M10.4485 13.8519C10.4749 13.9271 10.6203 14.246 11.379 14.7361C12.298 15.3298 13.7492 15.9145 15.6717 16.3735C18.0007 16.9296 20.8712 17.2655 24 17.2655C27.1288 17.2655 29.9993 16.9296 32.3283 16.3735C34.2508 15.9145 35.702 15.3298 36.621 14.7361C37.3796 14.246 37.5251 13.9271 37.5515 13.8519C37.5287 13.7876 37.4333 13.5973 37.0635 13.2931C36.5266 12.8516 35.6288 12.3647 34.343 11.9175C31.79 11.0295 28.1333 10.4437 24 10.4437C19.8667 10.4437 16.2099 11.0295 13.657 11.9175C12.3712 12.3647 11.4734 12.8516 10.9365 13.2931C10.5667 13.5973 10.4713 13.7876 10.4485 13.8519ZM37.5563 18.7877C36.3176 19.3925 34.8502 19.8839 33.2571 20.2642C30.5836 20.9025 27.3973 21.2655 24 21.2655C20.6027 21.2655 17.4164 20.9025 14.7429 20.2642C13.1498 19.8839 11.6824 19.3925 10.4436 18.7877V34.1275C10.4515 34.1545 10.5427 34.4867 11.379 35.027C12.298 35.6207 13.7492 36.2054 15.6717 36.6644C18.0007 37.2205 20.8712 37.5564 24 37.5564C27.1288 37.5564 29.9993 37.2205 32.3283 36.6644C34.2508 36.2054 35.702 35.6207 36.621 35.027C37.4573 34.4867 37.5485 34.1546 37.5563 34.1275V18.7877ZM41.5563 13.8546V34.1455C41.5563 36.1078 40.158 37.5042 38.7915 38.3869C37.3498 39.3182 35.4192 40.0389 33.2571 40.5551C30.5836 41.1934 27.3973 41.5564 24 41.5564C20.6027 41.5564 17.4164 41.1934 14.7429 40.5551C12.5808 40.0389 10.6502 39.3182 9.20848 38.3869C7.84205 37.5042 6.44365 36.1078 6.44365 34.1455L6.44365 13.8546C6.44365 12.2684 7.37223 11.0454 8.39581 10.2036C9.43325 9.3505 10.8137 8.67141 12.343 8.13948C15.4203 7.06909 19.5418 6.44366 24 6.44366C28.4582 6.44366 32.5797 7.06909 35.657 8.13948C37.1863 8.67141 38.5667 9.3505 39.6042 10.2036C40.6278 11.0454 41.5563 12.2684 41.5563 13.8546Z"
+              fill="currentColor"
+              fill-rule="evenodd"
+            ></path>
+          </svg>
+          <h1 class="text-xl font-bold text-gray-900 dark:text-white">
+            FinTrack
+          </h1>
+        </div>
+        <nav>
+          <ul>
+            <li>
+              <a
+                href="#"
+                class="flex items-center gap-3 p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 text-gray-700 dark:text-gray-300 font-medium transition-colors page-link"
+                data-page="dashboard"
+              >
+                <span class="material-symbols-outlined">dashboard</span>
+                <span>Dashboard</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center gap-3 p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 text-gray-700 dark:text-gray-300 font-medium transition-colors page-link"
+                data-page="transactions"
+              >
+                <span class="material-symbols-outlined">history</span>
+                <span>Transactions</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center gap-3 p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 text-gray-700 dark:text-gray-300 font-medium transition-colors page-link"
+                data-page="reports"
+              >
+                <span class="material-symbols-outlined">bar_chart</span>
+                <span>Reports</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center gap-3 p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 text-gray-700 dark:text-gray-300 font-medium transition-colors page-link"
+                data-page="settings"
+              >
+                <span class="material-symbols-outlined">settings</span>
+                <span>Settings</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="mt-auto p-4">
+          <button
+            id="logout_btn"
+            class="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-red-500/10 dark:hover:bg-red-500/20 text-red-600 dark:text-red-400 font-medium transition-colors"
+          >
+            <span class="material-symbols-outlined">logout</span>
+            <span>Logout</span>
+          </button>
+        </div>
+        <!-- reset -->
+        <div class="mt-auto p-4">
+          <button
+            id="reset_btn"
+            class="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-red-500/10 dark:hover:bg-red-500/20 text-red-600 dark:text-red-400 font-medium transition-colors"
+          >
+            <span class="material-symbols-outlined"> reset_settings </span>
+            <span>Reset Settings</span>
+          </button>
+        </div>
+      </aside>
+      <div class="flex-1 flex flex-col overflow-hidden">
+        <header
+          class="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-800"
+        >
+          <h2
+            id="page-title"
+            class="text-2xl font-bold text-gray-900 dark:text-white"
+          >
+            Dashboard
+          </h2>
+          <div class="flex items-center gap-4">
+            <button
+              class="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
+              <span class="material-symbols-outlined">notifications</span>
+            </button>
+            
+            <span class="material-symbols-outlined  " style="font-size: 50px;">
+account_circle
+</span>
+          </div>
+        </header>
+        <main id="main-content" class="flex-1 overflow-y-auto p-6 lg:p-8">
+          <!-- Dynamic content will be loaded here -->
+        </main>
+      </div>
+    </div>
+    <!-- //////////////////////////////////////// script Start here ,this should be AI then, LOL!!!///////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <script>
+            let current_user = JSON.parse(localStorage.getItem("current_user"));
+            console.log(current_user);
+
+            let user_Details = JSON.parse(localStorage.getItem(current_user.Email));
+
+            const mainContent = document.getElementById("main-content");
+            const pageTitle = document.getElementById("page-title");
+            const pageLinks = document.querySelectorAll(".page-link");
+
+            //for Chart details
+            let travel = 0;
+            let house = 0;
+            let food = 0;
+            let groceries = 0;
+            let other = 0;
+            let entertainment = 0;
+
+             function calculateSavingsRate(totalEarning, totalExpense) {
+        const savings = totalEarning - totalExpense;
+        const rate = (savings / totalEarning) * 100;
+        document.querySelector("#savings_rate").textContent = rate.toFixed(2) + "%";
+      }
+
+            const housing =
+              JSON.parse(
+                  localStorage.getItem(user_Details.Email + "_transactions")
+                ) || [];
+              console.log("housin=",housing)
+            if (housing) {
+              console.log("housing");
+              housing.forEach((val) => {
+                val.type == "travel"
+                  ? (travel += Number(val.amount))
+                  : val.type == "housing"
+                  ? (house += Number(val.amount))
+                  : val.type == "food"
+                  ? (food += Number(val.amount))
+                  : val.type == "groceries"
+                  ? (groceries += Number(val.amount))
+                  : val.type == "other"
+                  ? (other += Number(val.amount))
+                  :  (entertainment += Number(val.amount))
+
+
+              });
+            }
+
+
+
+
+            //   calculation
+            let totalExpenses = 0;
+            let totalEarnings = 0;
+            let currentBalance = 0;
+
+            let Calculation = () => {
+              let transactions =
+                JSON.parse(
+                  localStorage.getItem(user_Details.Email + "_transactions")
+                ) || [];
+
+              totalExpenses = 0;
+              totalEarnings = 0;
+              currentBalance = 0;
+              console.log(transactions);
+
+              // savings rate
+
+            
+       
+
+              // Calculate totals
+              transactions.forEach((tx) => {
+                // Ensure amount is treated as a number
+                let amount = Number(tx.amount);
+
+                if (tx.Transaction_type === "expense") {
+                  totalExpenses += amount;
+                } else if (tx.Transaction_type === "earning") {
+                  totalEarnings += amount;
+                }
+              });
+
+              // Calculate current balance
+              currentBalance = totalEarnings - totalExpenses;
+
+              console.log("Total Earnings:", totalEarnings);
+              console.log("Total Expenses:", totalExpenses);
+              console.log("Current Balance:", currentBalance);
+            };
+
+
+
+            Calculation();
+            const loadPage = async (pageName) => {
+              let htmlContent = "";
+              let title = "";
+
+              switch (pageName) {
+                case "dashboard":
+                  title =
+                    "Welcome " +
+                    JSON.parse(localStorage.getItem("current_user")).Name;
+                  htmlContent = `
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                        <div class="lg:col-span-2 bg-gradient-to-br from-primary/80 to-primary rounded-xl p-6 flex flex-col justify-between text-white shadow-lg">
+                            <div>
+                                <p class="text-lg font-medium opacity-80">Balance Overview</p>
+                                <p id="balance" class="text-4xl font-bold mt-2">₹${currentBalance}</p>
+                            </div>
+                            <div class="flex items-center gap-2 mt-4 text-sm">
+                                <span class="material-symbols-outlined text-green-400">trending_up</span>
+                                <span>+5.2% vs last month</span>
+                            </div>
+                        </div>
+                       <div class="bg-white dark:bg-background-dark/50 rounded-xl p-6 shadow-md border border-gray-200 dark:border-gray-800">
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Add New Transaction</h3>
+
+              <!-- Transaction Type -->
+              <label for="transaction-type" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Transaction Type</label>
+              <select id="transaction-type"
+                      class="w-full bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 rounded mb-3 focus:ring-primary focus:border-primary">
+                <option value="">Select...</option>
+                <option value="earning">Earning</option>
+                <option value="expense">Expense</option>
+              </select>
+
+              <!-- Expense Category -->
+              <div id="expense-category-wrapper" class="hidden">
+                <label for="transaction-category" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Expense Category</label>
+                <select id="transaction-category"
+                        class="w-full bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 rounded mb-3 focus:ring-primary focus:border-primary">
+                  <option value="">Select Category...</option>
+                  <option value="food">Food</option>
+                  <option value="travel">Travel</option>
+                  <option value="entertainment">Entertainment</option>
+                  <option value="housing">Housing</option>
+                  <option value="groceries">Groceries</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <!-- Earning Source -->
+              <div id="earning-source-wrapper" class="hidden">
+                <label for="transaction-source" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Income Source</label>
+                <select id="transaction-source"
+                        class="w-full bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 rounded mb-3 focus:ring-primary focus:border-primary">
+                  <option value="">Select Source...</option>
+                  <option value="salary">Salary</option>
+                  <option value="freelance">Freelance</option>
+                  <option value="investment">Investment</option>
+                  <option value="gift">Gift</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <!-- Description -->
+              <input id="transaction_description"
+                     class="w-full bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 rounded mb-3 focus:ring-primary focus:border-primary"
+                     placeholder="Description"
+                     type="text"/>
+
+              <!-- Amount -->
+              <input id="transaction_amount"
+                     class="w-full bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 rounded mb-4 focus:ring-primary focus:border-primary"
+                     placeholder="Amount"
+                     type="number"/>
+
+              <!-- Button -->
+              <button id="sub_btn"
+                      class="w-full bg-primary text-white font-bold py-2 px-4 rounded hover:bg-primary/90 transition-colors">
+                Add Transaction
+              </button>
+            </div>
+                        <div class="col-span-1 bg-white dark:bg-background-dark/50 rounded-xl p-6 shadow-md border border-gray-200 dark:border-gray-800">
+                            <p class="font-medium">Total Earnings</p>
+                            <p id="Total_Earings" class="text-3xl font-bold mt-2">₹${totalEarnings}</p>
+                            <div class="flex items-center gap-2 mt-2 text-sm">
+                                <span class="material-symbols-outlined">arrow_upward</span>
+                                <span>This Month</span>
+                            </div>
+                        </div>
+                        <div class="col-span-1 bg-white dark:bg-background-dark/50 rounded-xl p-6 shadow-md border border-gray-200 dark:border-gray-800">
+                            <p class="font-medium">Total Expenses</p>
+                            <p id="Total_Expense" class="text-3xl font-bold mt-2">₹${totalExpenses}</p>
+                            <div class="flex items-center gap-2 mt-2 text-sm">
+                                <span class="material-symbols-outlined">arrow_downward</span>
+                                <span>This Month</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="bg-white dark:bg-background-dark/50 rounded-xl p-6 shadow-md border border-gray-200 dark:border-gray-800">
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Expense Categories</h3>
+                            <canvas id="expenseChart"></canvas>
+                        </div>
+                        <div class="bg-white dark:bg-background-dark/50 rounded-xl p-6 shadow-md border border-gray-200 dark:border-gray-800">
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Recent Transactions</h3>
+                            <ul id="recent-transactions-list">
+                                <!-- Transaction items will be loaded here -->
+                            </ul>
+                        </div>
+                    </div>
+                    `;
+                  // Chart and transaction list logic will be added here after content is rendered
+                  break;
+                case "transactions":
+                  title =
+                    "Welcome " +
+                    JSON.parse(localStorage.getItem("current_user")).Name;
+                  htmlContent = `
+                    <div class="bg-white dark:bg-background-dark/50 rounded-xl shadow-md border border-gray-200 dark:border-gray-800 overflow-hidden">
+                        <div class="p-4 border-b border-gray-200 dark:border-gray-800 flex justify-between items-center">
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white">Transaction History</h3>
+                            <div class="flex items-center gap-2">
+                                <button class="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">
+                                    <span class="material-symbols-outlined">filter_list</span>
+                                </button>
+                                <button class="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">
+                                    <span class="material-symbols-outlined">search</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-gray-200 dark:bg-gray-800">
+                            <div class="bg-white dark:bg-background-dark/50">
+                                <h4 class="p-4 font-semibold text-green-600 dark:text-green-400">Earnings</h4>
+                                <table class="w-full text-sm text-left">
+                                    <thead class="text-xs text-gray-700 dark:text-gray-400 uppercase bg-gray-50 dark:bg-gray-700/50">
+                                        <tr>
+                                            <th class="px-4 py-3" scope="col">Source</th>
+                                            <th class="px-4 py-3" scope="col">Amount</th>
+                                            <th class="px-4 py-3" scope="col">Date</th>
+                                            <th class="px-4 py-3" scope="col"><span class="sr-only">Actions</span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="earnings-table-body">
+                                        <!-- Earnings rows will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="bg-white dark:bg-background-dark/50">
+                                <h4 class="p-4 font-semibold text-red-600 dark:text-red-400">Expenses</h4>
+                                <table class="w-full text-sm text-left">
+                                    <thead class="text-xs text-gray-700 dark:text-gray-400 uppercase bg-gray-50 dark:bg-gray-700/50">
+                                        <tr>
+                                            <th class="px-4 py-3" scope="col">Item</th>
+                                            <th class="px-4 py-3" scope="col">Amount</th>
+                                            <th class="px-4 py-3" scope="col">Date</th>
+                                            <th class="px-4 py-3" scope="col"><span class="sr-only">Actions</span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="expenses-table-body">
+                                        <!-- Expenses rows will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="p-4 flex justify-center items-center gap-2 text-sm">
+                          <button id="clear_btn" class="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">
+
+
+                          Clear All</button>
+
+                          <button id="print_btn" class="w-25 bg-primary text-white font-bold py-2 px-4 rounded hover:bg-primary/90 transition-colors">
+                            <a href="#" class=" w-25 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full cursor-pointer"><span class="material-symbols-outlined">print</span></a>
+                            Print Report
+                            </button>
+                        </div>
+                    </div>
+                    `;
+                  break;
+                case "reports":
+                  title =
+                    "Welcome " +
+                    JSON.parse(localStorage.getItem("current_user")).Name;
+                  htmlContent = `
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="bg-white dark:bg-background-dark/50 rounded-xl p-6 shadow-md border border-gray-200 dark:border-gray-800">
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Income vs Expense Over Time</h3>
+                            <canvas id="incomeExpenseChart">
+                             </canvas>
+                        </div>
+                        <div class="bg-white dark:bg-background-dark/50 rounded-xl p-6 shadow-md border border-gray-200 dark:border-gray-800">
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Spending by Category</h3>
+                            <canvas id="spendingByCategoryChart"></canvas>
+                        </div>
+                         <div class="lg:col-span-2 bg-white dark:bg-background-dark/50 rounded-xl p-6 shadow-md border border-gray-200 dark:border-gray-800">
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Monthly Summary</h3>
+                            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                                <div class="text-center">
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Total Income</p>
+                                    <p class="text-2xl font-bold text-gray-900 dark:text-white mt-1">₹${totalEarnings}</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Total Expenses</p>
+                                    <p class="text-2xl font-bold text-gray-900 dark:text-white mt-1">₹${totalExpenses}</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Savings Rate</p>
+                                    <p id="savings_rate" class="text-2xl font-bold text-green-500 mt-1"></p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Net Savings</p>
+                                    <p class="text-2xl font-bold text-gray-900 dark:text-white mt-1"></p>₹${currentBalance}</p>
+                                </div>
+                                <button id="print_btn" class="w-full bg-primary text-white font-bold py-2 px-4 rounded hover:bg-primary/90 transition-colors">
+                            <a href="#" class="p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full cursor-pointer"><span class="material-symbols-outlined">print</span></a>
+                            Print Report
+                            </button>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                  break;
+                case "settings":
+                  title =
+                    "Welcome " +
+                    JSON.parse(localStorage.getItem("current_user")).Name;
+                  htmlContent = `
+                    <div class="bg-white dark:bg-background-dark/50 rounded-xl p-6 shadow-md border border-gray-200 dark:border-gray-800">
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Account Settings</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" for="profile-picture">Profile Picture</label>
+                                <input id="profile-picture" type="file" class="border border-gray-300 dark:border-gray-700 rounded-md p-2 w-full"/>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" for="email">Email Address</label>
+                                <input id="email" type="email" value="user@example.com" class="w-full bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 rounded mb-3 focus:ring-primary focus:border-primary" disabled/>
+                            </div>
+                             <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" for="currency">Currency</label>
+                                <select id="currency" class="w-full bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 rounded mb-3 focus:ring-primary focus:border-primary">
+                                    <option>USD</option>
+                                    <option>EUR</option>
+                                    <option>GBP</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" for="theme">Theme</label>
+                                <select id="theme" class="w-full bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 rounded mb-3 focus:ring-primary focus:border-primary">
+                                    <option>Light</option>
+                                    <option>Dark</option>
+                                    <option>System</option>
+                                </select>
+                            </div>
+                            <button class="bg-primary text-white font-bold py-2 px-4 rounded hover:bg-primary/90 transition-colors">Save Settings</button>
+                        </div>
+                    </div>
+                    `;
+                  break;
+                default:
+                  title = "Page Not Found";
+                  htmlContent =
+                    '<p class="text-center text-gray-500 dark:text-gray-400">The requested page could not be found.</p>';
+              }
+
+              pageTitle.textContent = title;
+              mainContent.innerHTML = htmlContent;
+
+              // Re-initialize charts and event listeners after content is loaded
+              if (pageName === "dashboard") {
+                initDashboardPage();
+
+                const typeSelect = document.getElementById("transaction-type");
+                const expenseWrapper = document.getElementById(
+                  "expense-category-wrapper"
+                );
+                const earningWrapper = document.getElementById(
+                  "earning-source-wrapper"
+                );
+
+                typeSelect.addEventListener("change", () => {
+                  if (typeSelect.value === "expense") {
+                    expenseWrapper.classList.remove("hidden");
+                    earningWrapper.classList.add("hidden");
+                  } else if (typeSelect.value === "earning") {
+                    earningWrapper.classList.remove("hidden");
+                    expenseWrapper.classList.add("hidden");
+                  } else {
+                    // Hide both if no type selected
+                    expenseWrapper.classList.add("hidden");
+                    earningWrapper.classList.add("hidden");
+                  }
+                });
+
+                document.querySelector("#sub_btn").addEventListener("click", (e) => {
+                  e.preventDefault();
+
+                  // Get actual select/input values inside the wrappers
+                  const expenseSelect = document.querySelector(
+                    "#expense-category-wrapper select"
+                  );
+                  const earningSelect = document.querySelector(
+                    "#earning-source-wrapper select"
+                  );
+                  const expense =
+                    typeSelect.value === "expense" &&
+                    document.querySelector("#transaction_amount").value;
+                  const earning =
+                    typeSelect.value === "earning" &&
+                    document.querySelector("#transaction_amount").value;
+
+                  let data = {
+                    Transaction_type: typeSelect.value,
+                    type:
+                      typeSelect.value === "expense"
+                        ? expenseSelect?.value || ""
+                        : earningSelect?.value || "",
+                    amount: document.querySelector("#transaction_amount").value,
+                    description: document.querySelector("#transaction_description")
+                      .value,
+                    expense: expense,
+                    earning: earning,
+                    date: new Date().toLocaleString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      second: "2-digit",
+                      hour12: true,
+                    }),
+                  };
+                  console.log(data);
+
+                  if (
+                    !data.Transaction_type ||
+                    !data.type ||
+                    !data.amount ||
+                    !data.description
+                  ) {
+                    alert("please fill the form properly!!");
+                    return;
+                  }
+                  if (data.Transaction_type === "expense") {
+                    let expenses =
+                      JSON.parse(
+                        localStorage.getItem(user_Details.Email + "_Expense")
+                      ) || [];
+
+                    // Add new expense
+                    expenses.push(data);
+
+                    // Save back to localStorage
+                    localStorage.setItem(
+                      user_Details.Email + "_Expense",
+                      JSON.stringify(expenses)
+                    );
+
+                    let transactions =
+                      JSON.parse(
+                        localStorage.getItem(user_Details.Email + "_transactions")
+                      ) || [];
+                    transactions.push(data);
+                    localStorage.setItem(
+                      user_Details.Email + "_transactions",
+                      JSON.stringify(transactions)
+                    );
+                  } else {
+                    let earnings =
+                      JSON.parse(
+                        localStorage.getItem(user_Details.Email + "_Earnings")
+                      ) || [];
+
+                    earnings.push(data);
+
+                    localStorage.setItem(
+                      user_Details.Email + "_Earnings",
+                      JSON.stringify(earnings)
+                    );
+
+                    let transactions =
+                      JSON.parse(
+                        localStorage.getItem(user_Details.Email + "_transactions")
+                      ) || [];
+                    transactions.push(data);
+                    localStorage.setItem(
+                      user_Details.Email + "_transactions",
+                      JSON.stringify(transactions)
+                    );
+                  }
+
+                  Calculation();
+                  document.querySelector(
+                    "#Total_Expense"
+                  ).innerHTML = `₹${totalExpenses}`;
+                  document.querySelector(
+                    "#Total_Earings"
+                  ).innerHTML = `₹${totalEarnings}`;
+                  document.querySelector("#balance").innerHTML = `₹${currentBalance}`;
+
+                  window.location.reload();
+                });
+              } else if (pageName === "reports") {
+                calculateSavingsRate(totalEarnings,totalExpenses);
+                initChart();
+                let btn = document.querySelector("#print_btn");
+                btn.addEventListener("click", () => {
+                  window.print();
+                });
+              } else if (pageName === "transactions") {
+                loadTransactionTables();
+                document.querySelector("#clear_btn").addEventListener("click", () => {
+                  localStorage.removeItem(user_Details.Email + "_Expense");
+                  localStorage.removeItem(user_Details.Email + "_Earnings");
+                  window.location.reload();
+                });
+
+                let btn = document.querySelector("#print_btn");
+                btn.addEventListener("click", () => {
+                  window.print();
+                });
+              }
+            };
+
+            const initChart = () => {
+              const ctx = document.getElementById("incomeExpenseChart");
+              const ctx2 = document.getElementById("spendingByCategoryChart");
+              if (ctx) {
+                new Chart(ctx, {
+                  type: "bar",
+                  data: {
+                    labels: ["Earnings", "Expenses", "Savings"],
+                    datasets: [
+                      {
+                        label: "Expenses",
+                        data: [totalEarnings, totalExpenses, currentBalance],
+                        borderColor:"#ffffff",
+                        backgroundColor: ["#f43f5e", "#14b8a6", "#fde047"],
+                        fill: true,
+                        borderWidth: 3,
+                        tension: 0.4,
+                        hoverOffset: 5,
+                      },
+                    ],
+                  },
+                });
+              }
+              if (ctx2) {
+                new Chart(ctx2, {
+                  type: "doughnut",
+                  data: {
+                    labels: [
+                      "food",
+                      "travel",
+                      "entertainment",
+                      "housing",
+                      "groceries",
+                      "other",
+                    ],
+                    datasets: [
+                      {
+                        label: "Expenses",
+                         label: "Expenses",
+                        data: [food, travel, entertainment, house, groceries, other],
+                        backgroundColor: [
+                          "#7c42f0",
+                          "#8b5cf6",
+                          "#ec4899",
+                          "#fde047",
+                          "#f59e0b",
+                          "#f43f5e",
+                        ],
+                        hoverOffset: 5,
+                        fill: true,
+                        borderWidth: 3,
+                        tension: 0.4,
+                        hoverOffset: 5,
+                      },
+                    ],
+                  },
+                });
+              }
+            };
+
+            const initDashboardPage = () => {
+              // Expense Chart
+              const expenseCtx = document.getElementById("expenseChart");
+              if (expenseCtx) {
+                new Chart(expenseCtx, {
+                  type: "doughnut",
+                  data: {
+                    labels: ["Earnings", "Expenses", "Savings"],
+                    datasets: [
+                      {
+                        label: "Expenses",
+                        data: [totalEarnings, totalExpenses, currentBalance],
+                        backgroundColor: ["#7c42f0", "#8b5cf6", "#a78bfa"],
+                        hoverOffset: 5,
+                      },
+                    ],
+                  },
+                });
+              }
+
+              // Recent Transactions List
+              const recentTransactionsList = document.getElementById(
+                "recent-transactions-list"
+              );
+              const Transactions = JSON.parse(
+                localStorage.getItem(user_Details.Email + "_transactions")
+              );
+
+              if (Transactions) {
+                Transactions.slice(-7).forEach((tx) => {
+                  const li = document.createElement("li");
+                  li.className =
+                    "flex justify-between items-center py-3 border-b border-gray-200 dark:border-gray-800";
+                  li.innerHTML = `
+                              <div>
+                                  <p class="font-medium text-gray-900 dark:text-white">${
+                                    tx.description
+                                  }</p>
+                                  <p class="text-sm text-gray-500 dark:text-gray-400">${
+                                    tx.date
+                                  }</p>
+                              </div>
+                              <span class="text-lg font-semibold ${
+                                tx.Transaction_type === "earning"
+                                  ? "text-green-500"
+                                  : "text-red-500"
+                              }"> ${tx.Transaction_type === "earning"
+                                  ? "+"
+                                  : "-"
+                                  } ₹${tx.amount}</span>
+                          `;
+                  recentTransactionsList.prepend(li);
+                });
+              }
+            };
+
+            const loadTransactionTables = () => {
+              const Earnings = JSON.parse(
+                localStorage.getItem(user_Details.Email + "_Earnings")
+              );
+              const Expenses = JSON.parse(
+                localStorage.getItem(user_Details.Email + "_Expense")
+              );
+
+              const earningsTableBody = document.getElementById(
+                "earnings-table-body"
+              );
+              const expensesTableBody = document.getElementById(
+                "expenses-table-body"
+              );
+
+              if (Earnings) {
+                Earnings.forEach((earning) => {
+                  const row = document.createElement("tr");
+                  row.className = "border-b dark:border-gray-700";
+                  row.innerHTML = `
+                              <td class="px-4 py-3 font-medium text-gray-900 dark:text-white">${earning.type}</td>
+                              <td class="px-4 py-3 text-green-500">${earning.amount}</td>
+                              <td class="px-4 py-3 text-gray-500 dark:text-gray-400">${earning.date}</td>
+
+                          `;
+                  earningsTableBody.prepend(row);
+                });
+              }
+
+              if (Expenses) {
+                Expenses.forEach((expense) => {
+                  const row = document.createElement("tr");
+                  row.className = "border-b dark:border-gray-700";
+                  row.innerHTML = `
+                              <td class="px-4 py-3 font-medium text-gray-900 dark:text-white">${expense.type}</td>
+                              <td class="px-4 py-3 text-red-500">${expense.amount}</td>
+                              <td class="px-4 py-3 text-gray-500 dark:text-gray-400">${expense.date}</td>
+                          `;
+                  expensesTableBody.appendChild(row);
+                });
+              }
+            };
+
+            document.addEventListener("DOMContentLoaded", () => {
+              // Load the default page on initial load
+              loadPage("dashboard");
+
+              pageLinks.forEach((link) => {
+                link.addEventListener("click", (e) => {
+                  e.preventDefault();
+                  const pageName = link.getAttribute("data-page");
+                  loadPage(pageName);
+
+                  // Highlight active link
+                  pageLinks.forEach((item) =>
+                    item.classList.remove(
+                      "bg-primary/10",
+                      "dark:bg-primary/20",
+                      "text-primary"
+                    )
+                  );
+                  link.classList.add(
+                    "bg-primary/10",
+                    "dark:bg-primary/20",
+                    "text-primary"
+                  );
+                });
+              });
+            });
+
+            //   Reset
+
+            document.querySelector("#reset_btn").addEventListener("click", () => {
+      let user_confirm=confirm("This will clear all your current details. Are you sure you want to proceed?")
+      if(user_confirm){  localStorage.removeItem(user_Details.Email + "_transactions");
+              localStorage.removeItem(user_Details.Email + "_Expense");
+              localStorage.removeItem(user_Details.Email + "_Earnings");
+
+              window.location.reload()
+
+              }
+
+            });
+
+
+            // logout section
+      document.querySelector("#logout_btn").onclick=()=>{
+        window.location.href="index.html"
+      }
+    </script>
+  </body>
+</html>
