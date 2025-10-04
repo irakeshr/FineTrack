@@ -260,7 +260,7 @@ account_circle
 
 
             Calculation();
-            const loadPage = async (pageName) => {
+            const loadPage = (pageName) => {
               let htmlContent = "";
               let title = "";
 
@@ -493,10 +493,7 @@ account_circle
                                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" for="profile-picture">Profile Picture</label>
                                 <input id="profile-picture" type="file" class="border border-gray-300 dark:border-gray-700 rounded-md p-2 w-full"/>
                             </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" for="email">Email Address</label>
-                                <input id="email" type="email" value="user@example.com" class="w-full bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 rounded mb-3 focus:ring-primary focus:border-primary" disabled/>
-                            </div>
+                            
                              <div>
                                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" for="currency">Currency</label>
                                 <select id="currency" class="w-full bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 rounded mb-3 focus:ring-primary focus:border-primary">
@@ -505,15 +502,8 @@ account_circle
                                     <option>GBP</option>
                                 </select>
                             </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" for="theme">Theme</label>
-                                <select id="theme" class="w-full bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 rounded mb-3 focus:ring-primary focus:border-primary">
-                                    <option>Light</option>
-                                    <option>Dark</option>
-                                    <option>System</option>
-                                </select>
-                            </div>
-                            <button class="bg-primary text-white font-bold py-2 px-4 rounded hover:bg-primary/90 transition-colors">Save Settings</button>
+                           
+                            <button id="save_btn" class="bg-primary text-white font-bold py-2 px-4 rounded hover:bg-primary/90 transition-colors">Save Settings</button>
                         </div>
                     </div>
                     `;
@@ -679,6 +669,11 @@ account_circle
                 let btn = document.querySelector("#print_btn");
                 btn.addEventListener("click", () => {
                   window.print();
+                });
+              }
+              else if (pageName === "settings") {
+                document.querySelector("#save_btn").addEventListener("click", () => {
+                  alert("SORRY THE sETTING IS NOT AVAILABLE YET")
                 });
               }
             };
