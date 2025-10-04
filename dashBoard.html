@@ -206,7 +206,8 @@ account_circle
                   ? (groceries += Number(val.amount))
                   : val.type == "other"
                   ? (other += Number(val.amount))
-                  :  (entertainment += Number(val.amount))
+                  :val.type == "entertainment"
+                  ?  (entertainment += Number(val.amount)):null;
 
 
               });
