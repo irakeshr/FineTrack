@@ -18,6 +18,8 @@ document.querySelector("#login_btn").addEventListener("click",(e)=>{
         }else{
             alert("pleas check the password or email")
         }
+    }else{
+        alert("pleas check the password or email")
     }
     
      console.log(data);
